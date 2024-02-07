@@ -1,8 +1,13 @@
 <html>
 	<body>
+	<div >
 		<h1>
 			{{ .title }}
 		</h1>
+		<p1>Welcome to a {{ .title }}.</p1>
+	</div>
+	<br>
+	<div>
 		<script> 
 			var xhr = new XMLHttpRequest( ); 
 			xhr.onload = (res)=>{ 
@@ -14,5 +19,6 @@
 			xhr.open("GET","/squidge",true); 
 			xhr.send(); 
 		</script>
+	</div>
 	</body>
 </html>
