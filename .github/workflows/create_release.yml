@@ -1,0 +1,41 @@
+# check out for reference - https://github.com/Seneca-CDOT/telescope/blob/master/.github/workflows/release.yml
+
+name: Create Release
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Get next version
+        uses: reecetech/version-increment@2023.9.3
+        id: version
+        with:
+          scheme: semver
+          increment: patch
+      # - name: Build changelog
+      #   id: build_changelog
+      #   uses: mikepenz/release-changelog-builder-action@main
+      #   with:
+      #     configuration: 'release-changelog-builder-config.json'
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.version.outputs.v-version }}
+          release_name: Release ${{ steps.version.outputs.v-version }}
+          # body: ${{steps.build_changelog.outputs.changelog}}
+          draft: false
+          prerelease: false
