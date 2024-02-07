@@ -11,12 +11,12 @@ RUN go test -v ./...
 
 # build binary
 RUN CGO_ENABLED=0 GOOS=linux  go build -ldflags="-w -s" -o /go/bin/main
-#RUN go build -o /go/bin/hello
 RUN chmod +x /go/bin/main
 
-# Build smallest possible container
+# # Build smallest possible container
 FROM scratch
 
-COPY --from=builder /go/bin/main /go/bin/main
+COPY ./templates /templates
+COPY --from=builder /go/bin/main /main
 
-CMD ["/go/bin/main"]
+CMD ["/main"]
