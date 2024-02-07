@@ -1,6 +1,6 @@
 # check out for reference - https://github.com/Seneca-CDOT/telescope/blob/master/.github/workflows/release.yml
 
-name: Create Release
+name: create_release
 
 on:
   push:
