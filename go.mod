@@ -2,7 +2,10 @@ module github.com/Protobomb/go-gin-apit-test-server
 
 go 1.21
 
-require github.com/gin-gonic/gin v1.9.1
+require (
+	github.com/Protobomb/squidge v0.0.16
+	github.com/gin-gonic/gin v1.9.1
+)
 
 require (
 	github.com/bytedance/sonic v1.9.1 // indirect
