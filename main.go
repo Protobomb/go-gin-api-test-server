@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/Protobomb/squidge/squidge"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,6 +14,11 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl", gin.H{
 			"title": "Main website",
+		})
+	})
+	router.GET("/squidge", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": squidge.Squidge(),
 		})
 	})
 	router.Run(":8080")
