@@ -1,5 +1,18 @@
 <html>
-	<h1>
-		{{ .title }}
-	</h1>
+	<body>
+		<h1>
+			{{ .title }}
+		</h1>
+		<script> 
+			var xhr = new XMLHttpRequest( ); 
+			xhr.onload = (res)=>{ 
+				if(res.target.status == 200){ 
+					document.body.innerHTML +=  
+					(res.target.responseText); 
+				} 
+			} 
+			xhr.open("GET","/squidge",true); 
+			xhr.send(); 
+		</script>
+	</body>
 </html>
